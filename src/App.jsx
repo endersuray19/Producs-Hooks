@@ -32,6 +32,7 @@ function App() {
       </section>
       {/* fill with state name*/}
       <ProductList items={[]} />
+      <p>HALLO</p>
     </main>
   );
 }
