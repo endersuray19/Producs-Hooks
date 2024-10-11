@@ -6,14 +6,14 @@ const ProductList = ({items}) => {
       {items.map((item) => {
         const {id, title, img, desc, price} = item;
         return (
-            <article key=".." className='menu-item'>
-            <img src=".." alt=".." className='photo' />
+            <article key={item.id} className='menu-item'>
+            <img src={item.img} alt={item.img} className='photo' />
             <div className='item-info'>
               <header>
-                <h4>..</h4>
-                <h4 className='price'>..</h4>
+                <h4>{item.title}</h4>
+                <h4 className='price'>{item.price}</h4>
               </header>
-              <p className='item-text'>..</p>
+              <p className='item-text'>{item.desc}</p>
             </div>
           </article>
         );

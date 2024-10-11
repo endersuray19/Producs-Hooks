@@ -1,23 +1,32 @@
-import React, { useState } from "react";
+
+import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
 import Categories from "./Categories";
 import items from "./data";
 
 //Get exist categories
-const existCategories = [];
+const existCategories = items.map((item)=>item.category);
 //create set of unique category
-const myset = [];
+const myset = new Set(existCategories);
 //create array categories contains 'all' and exist categories
-const allCategories = [];
+const allCategories = ['all',...myset];
 
 function App() {
   //create state for product items
   const [productItems, setProductItems] = useState(items);
+  
+
   //create state for array categories
   const [categories, setCategories] = useState(allCategories);
 
   const filterItems = (category) => {
-    //WRITE YOUR CODE
+    if(category === 'all'){
+      setProductItems(items);
+    }
+    else{
+      const filteredItems = items.filter(item => item.category === category);
+      setProductItems(filteredItems);
+    }
   };
 
   return (
@@ -28,13 +37,14 @@ function App() {
           <div className="underline"></div>
         </div>
         {/* fill with state name*/}
-        <Categories categories={[]} filterItems={filterItems} />
+        <Categories categories={categories} filterItems={filterItems} />
       </section>
       {/* fill with state name*/}
-      <ProductList items={[]} />
-      <p>HALLO</p>
+      <ProductList items={productItems} />
+      
     </main>
   );
 }
 
 export default App;
+
